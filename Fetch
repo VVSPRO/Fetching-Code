@@ -1,0 +1,37 @@
+import java.net.*;
+import java.io.*;
+public class WebSiteeader {
+  public static void main(String args[]){
+       String nextLine;
+       URL url = null;
+       URLConnection urlConn = null;
+       InputStreamReader  inStream = null;
+       BufferedReader buff = null;
+       try{
+          // Create the URL obect that points
+          // at the default file index.html
+          url  = new URL("http://www.google.com" );
+          urlConn = url.openConnection();
+         inStream = new InputStreamReader( 
+                           urlConn.getInputStream());
+           buff= new BufferedReader(inStream);
+ 
+       // Read and print the lines from index.html
+        while (true){
+            nextLine =buff.readLine();  
+            if (nextLine !=null){
+                System.out.println(nextLine); 
+            }
+            else{
+               break;
+            } 
+        }
+     } catch(MalformedURLException e){
+       System.out.println("Please check the URL:" + 
+                                           e.toString() );
+     } catch(IOException  e1){
+      System.out.println("Can't read  from the Internet: "+ 
+                                          e1.toString() ); 
+  }
+ }
+}
